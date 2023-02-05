@@ -2,7 +2,7 @@
 Analyse conjunctions between asteroids during close flyby and artificial earth satellites
 
 ## Prerequisites:
-- pip3 install httpx sgp4
+- pip3 install httpx sgp4 astropy numpy matplotlib poliastro
 
 ## Notes
 - src/conjunction_sat_asteroid.ipynb: Jupiter notebook is currently setup to analyse 2023 BU close flyby on 2023-01-27. The initial parameters of the flyby are setup at the top.
