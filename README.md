@@ -11,6 +11,15 @@ Analyse conjunctions between asteroids during close flyby and artificial earth s
 ## TODO
 - load historical element sets from space-track.org.
 
+## Algorithm
+- Use JPL Horizons to obtain state vectors around the closest approach using coarse time step. This time is set manually.
+- Limit the time span to when the asteroid is within the GEO disposal orbit.
+- Use fine time step to refine the ephemeris.
+- Load complete element set from the archive that represents the catalog one day after the flyby close approach
+- Remove those satellites whose apogee is less than the closest approach. This reduces object count from ~24k to ~4.5k
+- Propagate each satellite for the duration of the flyby
+- Determine the closest range, report 20 closest active and debree objects (separately), and plot
+
 # Output for 2023 Bu Flyby
 ```
 No     NORAD INTER      Satellite Name            Miss (km)  Time of Closest Approach (UTC)
