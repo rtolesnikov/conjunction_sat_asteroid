@@ -67,4 +67,7 @@ No     NORAD INTER      Satellite Name (debree)   Miss (km)  Time of Closest App
 20     18603 62010G     MIDAS 5 DEB                    1461  2023-01-27 00:39:00.000
 ```
 
-![Miss distance 2023 BU](https://user-images.githubusercontent.com/22139709/216804044-386f6307-85c3-4ce5-899b-74be64e5fa30.png)
+## Miss distance 2023 BU
+![Miss distance 2023 BU](https://github.com/rtolesnikov/conjunction_sat_asterroid/blob/main/2023%20BU/Miss%20distance%202023%20BU.png)
+## 2023 BU Flyby Configuration
+![2023 BU Flyby Configuration](https://github.com/rtolesnikov/conjunction_sat_asterroid/blob/main/2023%20BU/Flyby%202023%20BU.png)
