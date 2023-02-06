@@ -18,9 +18,9 @@ Analyse conjunctions between asteroids during close flyby and artificial earth s
 - Load complete element set from the archive that represents the catalog one day after the flyby close approach
 - Remove those satellites whose apogee is less than the closest approach. This reduces object count from ~24k to ~4.5k
 - Propagate each satellite for the duration of the flyby
-- Determine the closest range, report 20 closest active and debree objects (separately), and plot
+- Determine the closest range, report 20 closest active and debris objects (separately), and plot
 
-# Output for 2023 Bu Flyby
+# Output for 2023 BU Flyby
 ```
 No     NORAD INTER      Satellite Name            Miss (km)  Time of Closest Approach (UTC)
  1     16993 86075A     COSMOS 1783                     757  2023-01-27 00:44:00.000
@@ -44,7 +44,7 @@ No     NORAD INTER      Satellite Name            Miss (km)  Time of Closest App
 19     20959 90103A     NAVSTAR 22 (USA 66)            3971  2023-01-26 23:07:00.000
 20     40081 14038C     O3B FM6                        4039  2023-01-27 00:00:00.000
 
-No     NORAD INTER      Satellite Name (debree)   Miss (km)  Time of Closest Approach (UTC)
+No     NORAD INTER      Satellite Name (debris)   Miss (km)  Time of Closest Approach (UTC)
  1     38549 68014C     OGO 5 DEB                       458  2023-01-27 00:36:00.000
  2     47332 11037NP    FREGAT DEB                      633  2023-01-27 00:21:00.000
  3     36959 06006CR    BREEZE-M DEB                    681  2023-01-27 00:04:00.000

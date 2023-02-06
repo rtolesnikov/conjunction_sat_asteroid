@@ -27,7 +27,7 @@ Notes:
     Location of the archive is in the _base_dir_tle_archive strgin, encoded as the template for string substitution
 """
 
-import os, datetime
+import os, datetime, glob
 
 from itertools import chain
 import zipfile
@@ -38,22 +38,21 @@ from sgp4.api import Satrec
 # In[2]:
 
 
-_base_dir_tle_archive = "X:\\files\\roman\\My TLEs\\{year:04d}\\Full Catalog\\Full Catalog-{year:04d}{month:02d}{day:02d}T{AM_PM}00.zip"
+_base_dir_tle_archive = "X:\\files\\roman\\My TLEs"
+_tle_template = _base_dir_tle_archive + "\\{year:04d}\\Full Catalog\\Full Catalog-{year:04d}{month:02d}{day:02d}T*.zip"
 
 def _get_archive_path(epoch, tol=4):
     '''Return the location of the historical 3le zip file from the archive
     '''
     # Get sequence in the form of : [0, -1, 1, -2, 2, -3, 3, -4, 4, -5]
     for i in chain.from_iterable(zip(range(tol+1),range(-1,-tol-1,-1))):
-        for AM_PM in ('07','11'):
-            #try plus or minus a day
-            target_date = epoch + datetime.timedelta(days = i)
-            path = _base_dir_tle_archive.format(**{'year':  target_date.year, 'month': target_date.month, 'day':   target_date.day, 'AM_PM':AM_PM})
-            # print(path)
-            if os.path.isfile(path):
-                return path
+        target_date = epoch + datetime.timedelta(days = i)
+        path = _tle_template.format(**{'year':  target_date.year, 'month': target_date.month, 'day':   target_date.day})
+        for file in glob.glob(path):
+            if os.path.isfile(file):
+                return file
   
-    raise ValueError(f"Cannot find archival file within {tol} days of {epoch.isoformat()} using template {base_path}")
+    raise ValueError(f"Cannot find archival file within {tol} days of {epoch.isoformat()} using template {_tle_template}")
 
 
 # In[4]:
@@ -82,11 +81,31 @@ def load_gp_from_archive(epoch):
 
 
 if __name__ == '__main__':
-        assert _get_archive_path(datetime.date.fromisoformat('2023-01-02')) == 'X:\\files\\roman\\My TLEs\\2023\\Full Catalog\\Full Catalog-20230102T0700.zip'
+        t = _get_archive_path(datetime.date.fromisoformat('2023-01-02'))
+        print(t)
+        assert t == _base_dir_tle_archive + '\\2023\\Full Catalog\\Full Catalog-20230102T0700.zip'
+
+        t = _get_archive_path(datetime.date.fromisoformat('2020-11-13'))
+        print(t)
+        assert t == _base_dir_tle_archive + '\\2020\\Full Catalog\\Full Catalog-20201113T1200.zip'
+
+        # Only passes if tolerance band is increased
+        try:
+            t = _get_archive_path(datetime.date.fromisoformat('2019-10-31'))
+        except ValueError as msg:
+            t = "Cannot find archival file within 4 days of 2019-10-31 using template " + _base_dir_tle_archive + r'\{year:04d}\Full Catalog\Full Catalog-{year:04d}{month:02d}{day:02d}T*.zip'
+            assert str(msg) == t
+        else:
+            raise AssertionError("Expected value exception")
+
+        t = _get_archive_path(datetime.date.fromisoformat('2019-10-31'), tol=6)
+        print(t)
+        assert t == _base_dir_tle_archive + '\\2019\\Full Catalog\\Full Catalog-20191104T0700.zip'
+        
         e = datetime.date.fromisoformat('2023-01-29')
         map_norad_to_name, sat_list = load_gp_from_archive(e)
         assert len(sat_list) == 24474
-
+        print("PASS!")
 
 # In[ ]:
 
