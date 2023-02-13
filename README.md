@@ -1,5 +1,5 @@
 # conjunction_sat_asterroid
-Analyse conjunctions between asteroids during close flyby and artificial earth satellites
+Analyze conjunctions between asteroids during close flyby and artificial earth satellites
 
 ## Prerequisites:
 - pip3 install httpx sgp4 astropy numpy matplotlib poliastro

@@ -1,0 +1,9 @@
+body {font-family: 'Console', monospace; }
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
+  text-align:center;
+}
+tr:hover {background-color: #D6EEEE;}
+caption {font-size: 150%; font-style: bold;}

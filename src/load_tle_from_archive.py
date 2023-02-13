@@ -16,15 +16,15 @@ These archives are previously saved by TLERetriever from celestrack.org
 Usage:
     (name_map, sat_list) = load_gp_from_archive(epoch, [tol])
 Input:
-    epoch datetiem object with the desired epoch of the 3le set
-    tol: optional, tolerace. If the archive for the date directly corrresponding to epoch is not found, search around that day for tol days
+    epoch datetime object with the desired epoch of the 3le set
+    tol: optional tolerace, days. Default=4. If the archive for the date directly corrresponding to epoch is not found, search around that day for tol days
 Outputs:
     Tuple of (name_map, sat_list)
     name_map: a dict mapping sattlite number to its name
-    sat_list: a list of sgp4 SatRec objects
+    sat_list: a list of sgp4 SatRec objects that represent the catalog
 
 Notes:
-    Location of the archive is in the _base_dir_tle_archive strgin, encoded as the template for string substitution
+    Location of the archive is in the _base_dir_tle_archive string, encoded as the template for string substitution
 """
 
 import os, datetime, glob
