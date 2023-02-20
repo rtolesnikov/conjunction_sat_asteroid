@@ -1,12 +1,13 @@
-# conjunction_sat_asteroid
+# Conjunctions between Asteroids and Artificial Satellites during Close Fly-bys or Asteroid-Earth Impacts
 Analyze conjunctions between asteroids during close flyby and artificial earth satellites
 
 ## Prerequisites:
 - pip3 install httpx sgp4 astropy numpy matplotlib poliastro
 
 ## Notes
-- src/conjunction_sat_asteroid.ipynb: Jupiter notebook is currently setup to analyse 2023 BU close flyby on 2023-01-27. The initial parameters of the flyby are setup at the top.
 - To analyse historical flybys, the code is relying on a private TLE archive.
+
+## For complete data set, see [Satelitte Asteroid Close Flybys](https://rtolesnikov.github.io/conjunction_sat_asteroid/)
 
 ## TODO
 - load historical element sets from space-track.org.
@@ -66,8 +67,3 @@ No     NORAD INTER      Satellite Name (debris)   Miss (km)  Time of Closest App
 19     43982 14055AM    ATLAS 5 CENTAUR DEB            1429  2023-01-27 01:17:00.000
 20     18603 62010G     MIDAS 5 DEB                    1461  2023-01-27 00:39:00.000
 ```
-
-## Miss distance 2023 BU
-![Miss distance 2023 BU](https://github.com/rtolesnikov/conjunction_sat_asterroid/blob/main/2023%20BU/Miss%20distance%202023%20BU.png)
-## 2023 BU Flyby Configuration
-![2023 BU Flyby Configuration](https://github.com/rtolesnikov/conjunction_sat_asterroid/blob/main/2023%20BU/Flyby%202023%20BU.png)
