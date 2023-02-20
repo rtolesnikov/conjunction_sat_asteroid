@@ -1,4 +1,4 @@
-# conjunction_sat_asterroid
+# conjunction_sat_asteroid
 Analyze conjunctions between asteroids during close flyby and artificial earth satellites
 
 ## Prerequisites:
