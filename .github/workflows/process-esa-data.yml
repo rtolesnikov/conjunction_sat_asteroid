@@ -1,0 +1,20 @@
+name: Process ESA NEOCC data
+run-name: Process latest close flyby data from ESA NEOCC
+on: [push]
+jobs:
+  process-esa-data:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install httpx sgp4 astropy numpy matplotlib poliastro
+    - name: Run main process
+      run: |
+        cd src
+        python conjunction_sat_asteroid.py
