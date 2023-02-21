@@ -3,7 +3,7 @@ run-name: Process latest close flyby data from ESA NEOCC
 on:
   schedule:
     - cron: '11 1 * * *'
-  workflow_dispatch
+  workflow_dispatch:
 jobs:
   process-esa-data:
     runs-on: ubuntu-latest
