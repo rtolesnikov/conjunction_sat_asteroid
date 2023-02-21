@@ -1,5 +1,8 @@
 name: Process ESA NEOCC data
 run-name: Process latest close flyby data from ESA NEOCC
+on:
+  schedule:
+    - cron: '11 1 * * *'
 jobs:
   process-esa-data:
     runs-on: ubuntu-latest
