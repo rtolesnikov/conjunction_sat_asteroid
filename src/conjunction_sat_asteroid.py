@@ -192,14 +192,12 @@ def process_asteroid(target_name, TCA, time_position = 'mid'):
 
     # If the close approach is current (within 3 days), download current GP elemet from celestrack
     if abs(Time(target_raw_fine[ICA_fine]['datetime_jd'], format='jd') - Time.now()) < 3* u.day :
-        import load_gp_from_celestrack
+        import load_gp_from_spacetrack
 
         sat_list = []
         map_satnum_to_name = {}
-        #sat_list.extend(list(load_gp_from_celestrak(group="gnss", name_map = map_satnum_to_name)))
-        #sat_list.extend(list(load_gp_from_celestrak(group="GEO", name_map = map_satnum_to_name)))
-        sat_list.extend(list(load_gp_from_celestrack.load_gp_from_celestrak(group="active", name_map = map_satnum_to_name)))
-        print('Loaded from Celestrack.org')
+        sat_list.extend(list(load_gp_from_spacetrack.load_gp_from_spacetrack(name_map = map_satnum_to_name)))
+        print('Loaded from space-track.org')
     else:
         # If the approach is in the past, get the archival TLE
         import load_tle_from_archive
@@ -446,6 +444,5 @@ try:
             except ValueError as e:
                 print(e)
 finally:
-    # Add processing status
     make_index(base_dir)
     
