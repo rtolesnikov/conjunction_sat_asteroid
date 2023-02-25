@@ -62,6 +62,7 @@ except:
         sys.exit(1)
        
 if __name__ == '__main__':
+    print(configUsr, configPwd)
     sat_list = []
     map_satnum_to_name = {}
     sat_list.extend(list(load_gp_from_spacetrack(name_map = map_satnum_to_name)))
