@@ -2,13 +2,22 @@
 Author: Roman Tolesnikov
 
 Read General Perturbation data from space-track.org using python spacetrack module
+Call load_gp_from_spacetrack(name_map) from an iterator
+ -- name_map is a dictional name to be udpated with 'satnum' as key and 'Object Name' as value
+ -- returns SatRec at every iteration
 
-Requires some extra dependencies:
+space-track.org credentials can be either in
+- environment 
+  * SPACETRACK_USER=<USER>
+  * SPACETRACK_PASSWD=<PWD>
+- or in space-track.ini file
+    [configuration]
+    username = <user>
+    password = <pwd>
 
-  $ pip install spcatrack
+Required dependencies:
 
-This is similar to https://gitlab.com/librespacefoundation/python-satellitetle,
-but uses the XML API instead and returns a `Satrec` object from sgp4 directly.
+  $ pip install sgp4 spacetrack
 
 """
 import sys, os, io
@@ -24,7 +33,6 @@ from sgp4.api import Satrec
 def _segments_from_space_track():
     st = SpaceTrackClient(identity=configUsr, password=configPwd)
     data = st.gp(epoch='>now-30', format='xml')
-    print("Got {} bytes of data".format(len(data)))
     with open('omm_latest.xml', 'w') as fp:
         fp.write(data)
     yield from omm.parse_xml(io.StringIO(data))
@@ -48,7 +56,6 @@ try:
     # See if environment contains credentials. This is the case for github deployments
     configUsr = os.environ['SPACETRACK_USER']
     configPwd = os.environ['SPACETRACK_PASSWD']
-    print("Got credentials from environment")
 except:
     try:
         # See if the credentials file exists. This is the case for local repositories
@@ -57,11 +64,9 @@ except:
         configUsr = config.get("configuration","username")
         configPwd = config.get("configuration","password")
     except:
-        print("Unable to obtain space-track.org credentials")
-        sys.exit(1)
+        raise ValueError("Unable to obtain space-track.org credentials")
        
 if __name__ == '__main__':
-    print(configUsr, configPwd)
     sat_list = []
     map_satnum_to_name = {}
     sat_list.extend(list(load_gp_from_spacetrack(name_map = map_satnum_to_name)))

@@ -190,7 +190,7 @@ def process_asteroid(target_name, TCA, time_position = 'mid'):
     print("Fine close approach:")
     print(target_raw_fine[ICA_fine]['datetime_str'],(target_raw_fine[ICA_fine]['range'] * u.au).to(u.km))
 
-    # If the close approach is current (within 3 days), download current GP elemet from celestrack
+    # If the close approach is current (within 3 days), download current GP elemet from space-track.org
     if abs(Time(target_raw_fine[ICA_fine]['datetime_jd'], format='jd') - Time.now()) < 3* u.day :
         import load_gp_from_spacetrack
 
