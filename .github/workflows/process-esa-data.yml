@@ -7,6 +7,7 @@ on:
 jobs:
   process-esa-data:
     runs-on: ubuntu-latest
+    environment: Test
     steps:
     - uses: actions/checkout@v3
       with:
@@ -30,7 +31,6 @@ jobs:
       env: 
         CI_COMMIT_MESSAGE: Daily update
         CI_COMMIT_AUTHOR: Action Script
-        CI_COMMIT_AUTHOR: Action Script    
       run: |
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "rtolesnikov@yahoo.com"

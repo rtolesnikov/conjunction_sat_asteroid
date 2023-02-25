@@ -56,7 +56,6 @@ except:
         config.read("space-track.ini")
         configUsr = config.get("configuration","username")
         configPwd = config.get("configuration","password")
-        print("Got credentials config file")
     except:
         print("Unable to obtain space-track.org credentials")
         sys.exit(1)
