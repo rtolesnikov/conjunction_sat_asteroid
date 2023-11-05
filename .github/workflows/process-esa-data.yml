@@ -27,12 +27,13 @@ jobs:
       run: |
         cd src
         python conjunction_sat_asteroid.py
-    - name: GIT commit and push all changed files
+    - name: GIT commit and push all new and changed files
       env: 
         CI_COMMIT_MESSAGE: Daily update
         CI_COMMIT_AUTHOR: Action Script
       run: |
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "rtolesnikov@yahoo.com"
+        git add -A
         git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
         git push
